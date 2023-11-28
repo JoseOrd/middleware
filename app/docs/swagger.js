@@ -19,6 +19,10 @@ const options = {
             {
               url: "http://localhost:3000",
             },
+            {
+                url: 'http://54.241.19.197/',
+                description: 'Servidor de producción',
+            },
         ],
         components: {
             securitySchemes: {
@@ -28,6 +32,31 @@ const options = {
                 }
               },
             schemas: {
+                IPFSRequest: {
+                    type: 'object',
+                    properties: {
+                        data: {
+                            type: 'string',
+                            description: 'Data to be uploaded to IPFS',
+                        },
+                    },
+                    required: ['data'],
+                },
+        
+                IPFSResponse: {
+                    type: 'object',
+                    properties: {
+                        success: {
+                            type: 'boolean',
+                            description: 'Indicates if the IPFS operation was successful',
+                        },
+                        result: {
+                            type: 'object',
+                            description: 'Result of the IPFS operation',
+                            // Puedes ajustar las propiedades según la respuesta real de IPFS
+                        },
+                    },
+                },
                 User: {
                     type: 'object',
                     properties: {
