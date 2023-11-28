@@ -55,8 +55,9 @@ const invoke = async (channelName,
         
         await gateway.disconnect();
 
+
         const response_payload = {
-            result: result.toString(),
+            result: JSON.parse(result.toString()),
             message,
         };
 
