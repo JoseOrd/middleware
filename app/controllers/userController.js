@@ -82,7 +82,6 @@ function handleRegistrationError(res, username, orgName, response) {
 }
 
 function handleServerError(res, error) {
-
     logger.error(`Internal Server Error: ${error}`);
     res.status(500).json({ success: false, message: 'Internal Server Error ' + error.toString() });
 }

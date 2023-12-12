@@ -50,7 +50,7 @@ const invoke = async (channelName,
 
         const contract = network.getContract(chaincodeName);
 
-        let result = await contract.submitTransaction(fcn, args[0]);
+        let result = await contract.submitTransaction(fcn, args[0], args[1]);
         let message = `Successfully added the wallet ${args} to the ledger`;
         
         await gateway.disconnect();
