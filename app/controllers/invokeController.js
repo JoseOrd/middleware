@@ -8,7 +8,7 @@ const invokeTransaction = async (req, res) => {
     try {
         logger.debug('==================== INVOKE ON CHAINCODE ==================');
 
-        const { fcn, args, peers, transient } = req.body;
+        const { fcn, args } = req.body;
         const { channelName, chaincodeName } = req.params;
 
         logger.debug('channelName  : ' + channelName);
@@ -18,7 +18,7 @@ const invokeTransaction = async (req, res) => {
 
         validateRequestFields({ chaincodeName, channelName, fcn, args });
 
-        let message = await invokeService.invoke(channelName, chaincodeName, fcn, args, req.username, req.orgname, transient);
+        let message = await invokeService.invoke(channelName, chaincodeName, fcn, args, req.username, req.orgname);
         console.log(`message result is : ${message}`)
 
         const response_payload = {
@@ -32,10 +32,9 @@ const invokeTransaction = async (req, res) => {
     } catch (error) {
         const response_payload = {
             result: null,
-            error: error.name,
-            errorData: error.message
+            error: error
         }
-        res.send(response_payload)
+        res.status(500).send(response_payload)
     }
 };
 

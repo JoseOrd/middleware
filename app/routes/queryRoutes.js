@@ -31,13 +31,11 @@ const router = express.Router();
  *           type: string
  *       - in: query
  *         name: args
- *         description: An array of arguments for the chaincode function
+ *         description: An string of arguments for the chaincode function
  *         required: true
  *         schema:
- *           type: array
- *           items:
- *             type: string
- *         example: ["wallet1"]
+ *           type: string
+ *         example: "jhonDoe@gmail.com"
  *       - in: query
  *         name: fcn
  *         description: The name of the chaincode function to invoke
@@ -45,13 +43,6 @@ const router = express.Router();
  *         schema:
  *           type: string
  *         example: "GetWalletByID"
- *       - in: query
- *         name: peer
- *         description: The target peer for the query
- *         required: false
- *         schema:
- *           type: string
- *         example: "peer0.org1.example.com"
  *     responses:
  *       '200':
  *         description: Successfully queried the chaincode

@@ -74,14 +74,14 @@ const options = {
                 InvokeTransaction: {
                     type: 'object',
                     properties: {
-                        peers: {
-                            type: 'array',
-                            description: 'An array of target peers',
-                            example: ["peer0.org1.example.com", "peer0.org2.example.com"],
-                            items: {
-                                type: 'string',
-                            },
-                        },
+                        // peers: {
+                        //     type: 'array',
+                        //     description: 'An array of target peers',
+                        //     example: ["peer0.org1.example.com", "peer0.org2.example.com"],
+                        //     items: {
+                        //         type: 'string',
+                        //     },
+                        // },
                         fcn: {
                             type: 'string',
                             description: 'The name of the chaincode function to invoke',
@@ -90,17 +90,17 @@ const options = {
                         args: {
                             type: 'array',
                             description: 'An array of arguments for the chaincode function',
-                            example: ["jhonDoe@gmail.com"],
+                            example: ["jhonDoe@gmail.com", "hashipfs"],
                             items: {
                                 type: 'string',
                             },
                         },
-                        transient: {
-                            type: 'object',
-                            description: 'Transient data for the transaction',
-                        },
+                        // transient: {
+                        //     type: 'object',
+                        //     description: 'Transient data for the transaction',
+                        // },
                     },
-                    required: ['peers', 'fcn', 'args', 'transient'],
+                    required: ['fcn', 'args'],
                 },
                 UnauthorizedResponse: {
                     type: 'object',

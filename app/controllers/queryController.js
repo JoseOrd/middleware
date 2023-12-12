@@ -9,7 +9,7 @@ const queryChaincode = async (req, res) => {
         logger.debug('==================== QUERY BY CHAINCODE ==================');
 
         const { channelName, chaincodeName } = req.params;
-        const { fcn, args, peer } = req.query;
+        const { fcn, args } = req.query;
 
         logger.debug('channelName : ' + channelName);
         logger.debug('chaincodeName : ' + chaincodeName);
@@ -30,10 +30,10 @@ const queryChaincode = async (req, res) => {
    } catch (error) {
         const response_payload = {
             result: null,
-            error: error.name,
-            errorData: error.message
+            error: error,
         }
-        res.send(response_payload)
+        
+        res.status(500).send(response_payload)
    }
 };
 

@@ -35,7 +35,6 @@ const query = async (channelName, chaincodeName, args, fcn, username, org_name) 
 
         // Get the contract from the network.
         const contract = network.getContract(chaincodeName);
-
         let result = await contract.evaluateTransaction(fcn, args);
 
         await gateway.disconnect();
@@ -47,7 +46,7 @@ const query = async (channelName, chaincodeName, args, fcn, username, org_name) 
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
-        return error.message
+        throw error.message
     }
 };
 

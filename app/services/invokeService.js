@@ -11,8 +11,7 @@ const invoke = async (channelName,
                                 fcn,
                                 args,
                                 username,
-                                org_name,
-                                transientData) => {
+                                org_name) => {
 
     try {
         logger.debug(util.format('\n============ invoke transaction on channel %s ============\n', channelName));
@@ -50,8 +49,8 @@ const invoke = async (channelName,
 
         const contract = network.getContract(chaincodeName);
 
-        let result = await contract.submitTransaction(fcn, args[0], args[1]);
-        let message = `Successfully added the wallet ${args} to the ledger`;
+        let result = await contract.submitTransaction(fcn, ...args);
+        let message = `Successfully added to the ledger`;
         
         await gateway.disconnect();
 
@@ -63,10 +62,16 @@ const invoke = async (channelName,
 
         return response_payload;
 
-
     } catch (error) {
-        console.log(`Getting error: ${error}`)
-        return error.message
+        console.log(`Getting error invoke transaction: ${error}`)
+
+        const errorDetails = error.message || 'Unknown error occurred';
+
+        // Utilizar expresiones regulares para extraer el mensaje específico
+        const regexResult = /message=(.+)$/.exec(errorDetails);
+        const specificErrorMessage = regexResult? regexResult[1] : 'Error details not available';
+
+        throw specificErrorMessage;
     }
 };
 
