@@ -37,16 +37,23 @@ const query = async (channelName, chaincodeName, args, fcn, username, org_name) 
         const contract = network.getContract(chaincodeName);
         let result = await contract.evaluateTransaction(fcn, args);
 
+        console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+
         await gateway.disconnect();
 
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
-        result = JSON.parse(result.toString());
-        return result
+        // Intenta analizar el resultado como JSON
+        try {
+            result = JSON.parse(result.toString());
+            return result;
+        } catch (jsonError) {
+            return result.toString();
+        }
 
     } catch (error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
-        throw error.message
+            console.error(`Failed to evaluate transaction: ${error}`);
+            throw error.message
     }
 };
 

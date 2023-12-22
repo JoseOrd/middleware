@@ -2,6 +2,7 @@ import log4js from 'log4js';
 import invokeService from '../services/invokeService.js';
 
 const logger = log4js.getLogger('Invoke');
+logger.level = 'DEBUG';
 
 
 const invokeTransaction = async (req, res) => {

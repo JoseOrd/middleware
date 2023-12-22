@@ -32,7 +32,7 @@ const router = express.Router();
  *       - in: query
  *         name: args
  *         description: An string of arguments for the chaincode function
- *         required: true
+ *         required: false
  *         schema:
  *           type: string
  *         example: "jhonDoe@gmail.com"

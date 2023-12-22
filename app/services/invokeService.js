@@ -54,9 +54,10 @@ const invoke = async (channelName,
         
         await gateway.disconnect();
 
+        console.log(result.toString());
 
         const response_payload = {
-            result: JSON.parse(result.toString()),
+            result: result.toString() === '' ? 'Transaction has been successfully submitted' : JSON.parse(result.toString()) ,
             message,
         };
 
